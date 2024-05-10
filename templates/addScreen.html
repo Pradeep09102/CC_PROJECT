@@ -1,0 +1,47 @@
+{% include 'thead.html' %}
+<style>
+  body {
+    background-image: url("https://scriptmag.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cq_auto:good%2Cw_1200/MTc5MTU5MzIxOTY2NDIxNzUy/businessoffilm-distribution-script2021.png");
+    background-size: 100% 100%;
+    height:100px;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="card mt-3 p-2">
+        <form action="addScreen1" method="post">
+            <input type="hidden" name="Theatre_id" value="{{Theatre_id}}">
+          <div class="mt-2">
+            <label for="screen" class="form-label">Screen</label>
+            <input type="text" name="screen" id="screen" required placeholder="Enter Screen" class="form-control">
+          </div>
+           <div class="mt-2">
+            <label for="show_one" class="form-label">Show One</label>
+            <input type="time" name="show_one" id="show_one" required  class="form-control">
+          </div>
+           <div class="mt-2">
+            <label for="show_two" class="form-label">Show Two</label>
+            <input type="time" name="show_two" id="show_two" required class="form-control">
+          </div>
+           <div class="mt-2">
+            <label for="show_three" class="form-label">Show Three</label>
+            <input type="time" name="show_three" id="show_three" required  class="form-control">
+          </div>
+           <div class="mt-2">
+            <label for="show_four" class="form-label">Show Four</label>
+            <input type="time" name="show_four" id="show_four" required class="form-control">
+          </div>
+           <div class="mt-2">
+            <label for="number_of_seats" class="form-label">Number Of Seats</label>
+            <input type="number" name="number_of_seats" id="number_of_seats" placeholder="Enter Seats" required class="form-control">
+          </div>
+            <div class="mt-2">
+                <input type="submit" value="Add Screen" class="btn btn-success w-100">
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

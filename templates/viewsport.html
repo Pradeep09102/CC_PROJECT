@@ -1,0 +1,60 @@
+{% include 'ahead.html'%}
+
+<style>
+    body{
+      background-image: url("https://st.depositphotos.com/16122460/61041/i/450/depositphotos_610413232-stock-photo-set-different-colorful-sports-equipment.jpg");
+      background-size: cover;
+    }
+</style>
+<style>
+    .button {
+      background-color: #c9bb1c;
+      border: none;
+      color: rgb(3, 3, 3);
+      padding: 20px 34px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 2px 2px;
+      cursor: pointer;
+      border-radius: 6px;
+      outline: none;
+      transition: 0.3s;
+    }
+    .button:hover {
+        background-color: #75f3f3;
+      }
+</style>
+
+<div style = "position:relative; left:1200px; top:2px;">
+    <a href="addsport" class="button">Add Sport</a>
+</div>
+
+<div class="row">
+    {% for sport in sports: %}
+    <div class="col-md-4">
+        <div class="card mt-5 p-3">
+            <div class="row">
+            <div class="col-md-6">
+               <img src="../static/pictures/{{sport['poster']}}">
+            </div>
+            <div class="col-md-6">
+                <div class="mt-2">
+                  <div class="text-muted" style="font-style:80%">Sport Name</div>
+                  <div class="h6">{{sport['name']}}</div>
+                </div>
+             <div class="mt-2">
+                <div class="text-muted" style="font-style:80%">Type</div>
+                <div class="h6">{{sport['type']}}</div>
+            </div>
+            <div class="mt-2">
+                <div class="text-muted" style="font-style:80%">Category</div>
+                <div class="h6">{{sport['category']}}</div>
+            </div>
+            </div>                 
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>

@@ -1,0 +1,43 @@
+{% if session['role']=='Member'%}
+{% include 'chead.html' %}
+{%endif%}
+{%if session['role']!='Member'%}
+{%include 'head.html'%}
+{%endif%}
+<style>
+    
+</style>
+ <div class="row">
+   <div class="col-md-4"></div>
+   <div class="col-md-4">
+     <div class="card mt-5 p-3">
+       <form action="payAmount2" method="post">
+        {% if session['role']=='Member'%}<div class="text-right h5">Payable Amount: {{license_amount}}</div>{%endif%}
+        {% if session['role']!='Member'%}<div class="payment-details"><div class="text-center h5">Membership Payment: $50.00 </div>
+        <div class="text-center h5">Tax (5%): $2.50  </div>
+        <div class="text-center h5">Total: $52.50</div></div>{%endif%}
+         <input type="hidden" name="member_id" value="{{member_id['_id']}}">
+         <div class="mt-2">
+            <label for="card_number" class="form-label">Card Number</label>
+           <input type="number" name="card_number" id="card_number" placeholder="Enter Card Number" class="form-control" required>
+         </div>
+         <div class="mt-2">
+           <label for="holder_name" class="form-label">Card Holder Name</label>
+           <input type="text" name="holder_name" id="holder_name" placeholder="Enter Holder Name" class="form-control" required>
+         </div>
+         <div class="mt-2">
+           <label for="cvv" class="form-label">CVV</label>
+           <input type="number" name="cvv" id="cvv" placeholder="Enter CVV" maxlength="3" class="form-control" required>
+         </div>
+         <div class="mt-2">
+           <label for="expired_date" class="form-label">Expired Date</label>
+           <input type="text" name="expired_date" id="expired_date" placeholder="Enter Date " class="form-control" required>
+         </div>
+         <div class="mt-2">
+           <input type="submit" value="Pay" class="btn btn-primary w-100">
+         </div>
+       </form>
+     </div>
+   </div>
+ </div>
+

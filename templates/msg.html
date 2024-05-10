@@ -1,0 +1,10 @@
+{% if session['role'] == 'admin': %}
+    {% include 'ahead.html'%}
+{% elif session['role'] == 'Member': %}
+    {% include 'chead.html'%}
+{% else: %}
+    {% include 'head.html'%}
+{% endif %}
+<div class="container">
+    <div class="card  text-center   h3 {{color}}  p-3 mt-5">{{msg}}</div>
+</div>

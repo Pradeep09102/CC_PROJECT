@@ -1,0 +1,144 @@
+{% if session['role'] == 'Member':%}
+   {% include 'chead.html' %}
+{%  elif session['role'] == 'admin':%}
+   {% include 'ahead.html'%}
+{% endif %}
+<style>
+  body {
+    background-image: url("https://www.devonshires.com/wp-content/uploads/2017/07/handshake-contract.jpg");
+    background-size: cover;
+    height:100px;
+  }
+  .button1 {
+            background-color: #c97b1c;
+            border: none;
+            color: rgb(3, 3, 3);
+            padding: 10px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+    
+        .button1:hover {
+            background-color: rgb(248, 70, 5);
+        }
+        .button2 {
+            background-color: rgb(28, 201, 34);
+            border: none;
+            color: rgb(3, 3, 3);
+            padding: 10px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+    
+        .button2:hover {
+            background-color: rgb(5, 248, 143);
+        }
+</style>
+<div class="container">
+   <div class="row">
+      {% for schedule in schedules: %}
+      {% set member=get_member(schedule['member_id'])%}
+      {% set court=get_court(schedule['court_id'])%}
+      {% set sport=get_sport(court['sport_id'])%}
+      {% set payment=get_payment(schedule['_id'])%}
+      <div class="col-md-4 mt-4">
+         <div class="card mt-3 p-3">
+            <div class="mt-1">
+               <div class="text-muted" style="font-style:80%">Customer Name</div>
+               <div class="h6">{{member['name']}}</div>
+            </div>
+            <div class="mt-1">
+              <div class="text-muted" style="font-style:80%">Court Name</div>
+              <div class="h6">{{court['name']}}</div>
+            </div>
+            <div class="mt-1">
+              <div class="text-muted" style="font-style:80%">Sport</div>
+              <div class="h6">{{sport['name']}}</div>
+            </div>
+            <div class="mt-1">
+              <div class="text-muted" style="font-style:80%">From Date Time</div>
+              <div class="h6">{{schedule['start_time']}}</div>
+            </div>
+             <div class="mt-1">
+              <div class="text-muted" style="font-style:80%">To Date Time</div>
+              <div class="h6">{{schedule['end_time']}}</div>
+            </div>
+             <div class="mt-1">
+              <div class="text-muted" style="font-style:80%">Booking Date</div>
+              <div class="h6">{{schedule['date']}}</div>
+            </div>
+             <div class="mt-1">
+              <div class="text-muted" style="font-style:80%">Status</div>
+              <div class="h6">{{schedule['status']}}</div>
+            </div>
+            {%if session['role']=='Member'%}
+            {%if schedule['status']!='Booking Cancelled'%}
+            {%if schedule['p_flag']==1%}
+            <a href="payAmount?schedule_id={{schedule['_id']}}" class="button2">Proceed to payment</a>
+            {%endif%}
+            {%if schedule['c_flag']==1%}
+            <a href="cancelled?schedule_id={{schedule['_id']}}" class="button1">Cancel Booking</a>
+            {%endif%}{%endif%}
+            {%endif%}
+            {%if session['role']=='admin'%}
+            {% if sport['category']=='Team'%}
+            {% if schedule['status']=='Booking Done'%}
+            <div class="mt-1" id="checkInBtn_{{ schedule['_id'] }}"></div>
+            {%endif%}{%endif%}{%endif%}
+         </div>
+      </div>
+      <script>
+         // Get the div element for rendering the button
+         var checkInBtnDiv = document.getElementById("checkInBtn_{{ schedule['_id'] }}");
+
+         // Create and append the "CheckIn" button
+         var checkInBtn = document.createElement("a");
+         checkInBtn.href = "checkinstatus1?schedule_id={{ schedule['_id'] }}";
+         checkInBtn.className = "btn btn-danger w-100";
+         
+         // Retrieve the stored state from local storage
+         var storedState = localStorage.getItem("checkInState_{{ schedule['_id'] }}");
+         if (storedState === "CheckedIn") {
+             checkInBtn.textContent = "Checked In";
+             checkInBtn.className = "btn btn-success w-100";
+             checkInBtn.href = "checkinstatus?schedule_id={{ schedule['_id'] }}";
+         } else {
+             checkInBtn.textContent = "Waiting for CheckIn";
+         }
+
+         checkInBtn.onclick = function() {
+             if (this.textContent === "Waiting for CheckIn") {
+                 this.textContent = "Checked In";
+                 this.className = "btn btn-success w-100";
+                 this.href = "checkinstatus?schedule_id={{ schedule['_id'] }}";
+                 // Save the state in local storage when changed
+                 localStorage.setItem("checkInState_{{ schedule['_id'] }}", "CheckedIn");
+             } else {
+                 this.textContent = "Waiting for CheckIn";
+                 this.className = "btn btn-danger w-100";
+                 this.href = "checkinstatus1?schedule_id={{ schedule['_id'] }}";
+                 // Save the state in local storage when changed
+                 localStorage.setItem("checkInState_{{ schedule['_id'] }}", "WaitingForCheckIn");
+             }
+             return false; // Prevent default link behavior
+         };
+
+         checkInBtnDiv.appendChild(checkInBtn);
+     </script>
+      {% endfor %}
+   </div>
+</div>

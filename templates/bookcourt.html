@@ -1,0 +1,103 @@
+{% include 'chead.html' %}
+<style>
+  .date-picker {
+    margin-bottom: 20px;
+  }
+
+  .time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .time-radio {
+    display: none;
+  }
+
+  .time-label {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+
+  .selected {
+    background-color: #0056b3;
+  }
+
+  .time-radio:checked + .time-label {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="card mt-5 p-3">
+        <div class="text-center h5">Court Booking</div>
+        <form action="bookcourt1" method="post">
+          <input type="hidden" name="court_id" value="{{court_id}}">
+          
+          <div class="date-picker">
+            <label for="datePicker">Select Date:</label>
+            <input type="date" id="datePicker" name="Date" min="{{ today }}" max="{{ maxDate }}" required>
+          </div>
+          
+          <div class="time-container">
+            <label for="startTime">Select Start Time:</label>
+            <div class="time-buttons" id="startButtons">
+              {% for hour in range(11, 24) %}
+                {% set hour_12 = hour if hour <= 12 else hour - 12 %}
+                {% set am_pm = 'AM' if hour < 12 else 'PM' %}
+                <input type="radio" class="time-radio" id="start{{ hour }}" name="start_time" value="{{ hour }}:00">
+                <label class="time-label" for="start{{ hour }}">{{ hour_12 }}:00 {{ am_pm }}</label>
+              {% endfor %}
+            </div>
+    
+            <label for="endTime">Select End Time:</label>
+            <div class="time-buttons" id="endButtons">
+              {% for hour in range(12, 25) %}
+                {% set hour_12 = hour if hour <= 12 else hour - 12 %}
+                {% set am_pm = 'AM' if hour < 12 else 'PM' %}
+                <input type="radio" class="time-radio" id="end{{ hour }}" name="end_time" value="{{ hour }}:00">
+                <label class="time-label" for="end{{ hour }}">{{ hour_12 }}:00 {{ am_pm }}</label>
+              {% endfor %}
+            </div>
+            
+            <div class="mt-2">
+              <input type="submit" value="Proceed to Payment" class="btn btn-success w-100">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let selectedButton = null;
+
+  function selectTime(time) {
+    if (selectedButton) {
+      selectedButton.classList.remove('selected');
+    }
+
+    selectedButton = event.target;
+    selectedButton.classList.add('selected');
+  }
+
+  function setMinMaxDates() {
+    const datePicker = document.getElementById('datePicker');
+    const today = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
+    const maxDate = new Date();
+    maxDate.setDate(maxDate.getDate() + 7); // Set max date as 7 days from today
+
+    datePicker.min = today; // Set minimum date to today
+    datePicker.max = maxDate.toISOString().split('T')[0]; // Set max date to one week from today
+  }
+
+  document.addEventListener('DOMContentLoaded', setMinMaxDates);
+</script>

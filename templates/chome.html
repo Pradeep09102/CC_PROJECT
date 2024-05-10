@@ -1,0 +1,35 @@
+{% include 'chead.html'%}
+<style>
+body {
+  background-image: url(https://media.hudle.in/photos/49236);
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  height:200px;
+}
+</style>
+<div class="container">
+<div class="row">
+      <div class="col-md-3">
+          <div class="card mt-5 p-3">
+              <div class="text-center h5" style="color:rgb(130, 153, 238)">Member Details</div>
+              <div class="mt-1">
+                  <div class="text-muted" style="font-size:80%">Member Name</div>
+                  <div class="h6">{{Member['name']}}</div>
+              </div>
+              <div class="mt-1">
+                  <div class="text-muted" style="font-size:80%">Username</div>
+                  <div class="h6">{{Member['username']}}</div>
+              </div>
+              <div class="mt-1">
+                <div class="text-muted" style="font-size:80%">Phone number</div>
+                <div class="h6">{{Member['mobile_no']}}</div>
+              </div>
+              <div class="mt-1">
+                <div class="text-muted" style="font-size:80%">Membership Status</div>
+                <span class="value">{{Member['membership_status']}} till </span>
+                    <span class="value">{{Member['expiry_date']}}</span>
+            </div>
+          </div>
+      </div>
+ </div>
+</div>

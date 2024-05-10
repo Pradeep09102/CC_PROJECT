@@ -1,0 +1,166 @@
+{% if session['role'] == 'admin': %}
+    {% include 'ahead.html'%}
+{% elif session['role'] == 'Member': %}
+    {% include 'chead.html'%}
+{% endif %}
+
+<style>
+  body{
+    background-image: url(https://media.hudle.in/photos/49236);
+    background-size: cover;
+  }
+</style>
+
+<div class="combo-box">
+    <form action="viewcourt" method="get">
+      <div class="row" style="width: 400px; padding-left:125px">
+        <label class="form-label">Choose Sport</label>
+        <select name="Sport_id" class="form-control" onchange="this.form.submit()">
+            <option value="">Choose Sport</option>
+            {% for sport in sports %}
+            <option value="{{sport['_id']}}">{{sport['name']}}</option>
+            {% endfor %}
+        </select>
+      </div>
+      </form>
+      <div class="text-center h4 mt-3 text-warning" style="position: absolute; top:100px; left: 700px;">Court List</div>
+      <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+    
+        .card {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            background: rgba(240, 205, 64, 0.34);
+            margin: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+    
+        .card .row {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: 0.5s;
+        }
+    
+        .card:hover .row {
+            transform: translateY(-20px);
+        }
+    
+        .card .row {
+            position: absolute;
+            bottom: 1px;
+            display: flex;
+        }
+    
+        .card .row li {
+            list-style: none;
+            margin: 0 10px;
+            transform: translateY(40px);
+            transition: 0.5s;
+            opacity: 0;
+        }
+    
+        .card:hover .row li {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    
+        .card .row li a {
+            color: #fff;
+            font-size: 20px;
+        }
+    
+        .button {
+            background-color: #c9bb1c;
+            border: none;
+            color: rgb(3, 3, 3);
+            padding: 10px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+    
+        .button:hover {
+            background-color: #75f3f3;
+        }
+    </style>
+    
+      {% if session['role']=='admin' %}
+      <div style = "position:absolute; left:1200px; top:110px;">
+        <a href="courtReg" class="button">New Court</a>
+      </div >
+    {% endif %}
+{% if session['role'] == 'Member': %}
+<div class="container">
+<div class="row">
+  {% for court in courts: %}
+  {% if court['status']=='Active'%}
+      <div class="card">
+          <div class="row">
+          <div class="col-md-6" style="background-color: #8ad6d6;text-align: center;padding: 20px;width: 175px;height: 100px;">
+             {{court['name']}}
+          </div>
+          <div class="contentBX">
+              <ul class="mt-2">
+                <li>Price: {{court['price']}}</li>
+                <li>================</li>
+              <li><a href="bookcourt?court_id={{court['_id']}}" class="button">Book Court</a>
+              </li>
+            </ul>                 
+        </div>
+      </div>
+    </div>
+    {%endif%}
+  {% endfor %}
+</div>
+</div>
+{%endif%}
+{% if session['role'] == 'admin': %}
+<div class="container">
+<div class="row">
+  {% for court in courts: %}
+      <div class="card">
+          <div class="row">
+          <div class="col-md-6" style="background-color: #8ad6d6;text-align: center;padding: 20px;width: 175px;height: 100px;">
+             {{court['name']}}
+          </div>
+          <div class="contentBX">
+              <ul class="mt-2">
+                <li>Price: {{court['price']}}</li>
+                <li>================</li>
+              <li>Status</li>
+              <li>
+                {% if court['status'] == "Inactive" :%}
+                <a href="tstatus?Courts_id={{court['_id']}}" class="btn btn-danger w-100">Inactive</a>
+                {% else :%}
+                <a href="tstatus1?Courts_id={{court['_id']}}" class="btn btn-success w-100">Active</a>
+                {% endif %}</li>
+              <li>
+                <a href="viewbookings?court_id={{court['_id']}}" class="button">View Bookings</a>
+              </li>
+            </ul>                 
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+</div>
+{%endif%}

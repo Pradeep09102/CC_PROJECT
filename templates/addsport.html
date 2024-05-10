@@ -1,0 +1,55 @@
+{% include 'ahead.html'%}
+<head>
+<style>
+body {
+  background-image: url("https://st.depositphotos.com/16122460/61041/i/450/depositphotos_610413232-stock-photo-set-different-colorful-sports-equipment.jpg");
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  height:200px;
+}
+</style>
+</head>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card p-3 mt-3">
+                <form action="addsport1" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="Sports_id" value="{{Sports_id}}">
+                    <div class="h4 text-center">Add Sport</div>
+                    <div class="row">
+                        <div class="mt-2">
+                                <label for="sport_name">Sport Name</label>
+                                <input type="text" class="form-control" id="sport_name" placeholder="Enter Name" name="sport_name" required>
+                            </div>
+                            <div class="mt-2 ">
+                                <div class="form-group mt-4">
+                                    <label for="Type">Type</label>
+                                    <select input type="text" id="type" name="type" class="form-control" required>
+                                        <option value="">Choose Type</option>
+                                        <option value="Indoor"> Indoor </option>
+                                        <option value="Outdoor"> Outdoor </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="poster">Poster</label>
+                                <input type="file" class="form-control" id="poster" name="poster" required>
+                            </div>
+                            <div class="form-group mt-4">
+                                    <label for="category">Category</label>
+                                    <select input type="text" id="category" name="category" class="form-control" required>
+                                        <option value="">Choose Location</option>
+                                        <option value="Individual"> Individual </option>
+                                        <option value="Team"> Team </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                       <input type="submit" value="Add sport" class="btn btn-success  w-100 mt-3">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

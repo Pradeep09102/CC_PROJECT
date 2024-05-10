@@ -1,0 +1,37 @@
+{% include 'ahead.html'%}
+
+<style>
+    body {
+      background-image: url(https://www.insidehook.com/wp-content/uploads/2023/08/golf-simulator-2.jpg?fit=1200%2C786);
+      background-size: cover;
+      height:200px;
+    }
+</style>
+<div class="container">
+    <div class="text-center h4 mt-3 text-warning" >Customers List</div>
+    <table class="table table-bordered table-warning mt-3" style = "position:relative; top:50px;">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Mobile Number</th>
+            <th>Emergency Contact Number</th>
+            <th>Membership Status</th>
+        </tr>
+            {% for customers in customers %}
+            <tr>
+                <td>{{customers['name']}}</td>
+                <td>{{customers['lname']}}</td>
+                <td>{{customers['username']}}</td>
+                <td>{{customers['gender']}}</td>
+                <td>{{customers['dob']}}</td>
+                <td>{{customers['mobile_no']}}</td>
+                <td>{{customers['emergency_contact']}}</td>
+                <td><span class="value">{{customers['membership_status']}} till </span>
+                    <span class="value">{{customers['expiry_date']}}</span></td>
+            </tr>
+            {% endfor %}
+    </table>
+</div>

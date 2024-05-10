@@ -1,0 +1,16 @@
+{% include "head.html" %}
+<div class="row mt-5">
+<form action="certification1" method="post">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="col-md-2"></div>
+      <div class="h4 text-center text-dark w-100"><b><i>View Certification</i></b></div>
+      <div class="form-group">
+        {% for movie in movies: %}
+        <img src="../static/pictures/{{movie['poster']}}" style= "font-size:12px">
+    </div>
+      {% endfor %}
+  </div>
+</form>
+</div>
