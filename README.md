@@ -1,96 +1,104 @@
+# 🏟️ Cloud-Based Sports Court Booking System
 
+A scalable and user-friendly web application for booking sports courts online. Built with Flask and deployed on the cloud, this project simplifies the reservation process for users while enabling admins to efficiently manage court availability and bookings.
 
-```markdown
-# Cloud-Based Sports Court Booking System
+---
 
-## Overview
-
-This project is a **cloud-based sports court booking system** that enables users to register, browse available courts, and book slots online. Built with Python and Flask, the system is designed to streamline the court reservation process while leveraging cloud infrastructure for scalability and performance. Admin users have access to booking management and court scheduling features.
-
-## Features
-
-- 🏸 **User Authentication** – Secure login and registration for users and admins  
-- 🏀 **Court Availability** – Real-time court schedule to check availability  
-- 📅 **Booking Management** – Users can create, view, and cancel bookings  
-- ☁️ **Cloud Deployment** – Deployed on a cloud platform for high availability  
-- 🧑‍💼 **Admin Panel** – Manage court schedules and view all reservations  
-- 📧 **Email Notifications** – (Optional) Alerts for successful bookings and cancellations  
-
-## Tech Stack
+## 🔧 Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript  
-- **Backend**: Python, Flask  
+- **Backend**: Python (Flask)  
 - **Database**: PostgreSQL  
 - **Cloud Platform**: Google Cloud Platform (GCP)  
-- **Version Control**: Git & GitHub
+- **Version Control**: Git & GitHub  
 
-## Installation
+---
 
-1. **Clone the Repository**
+## 🚀 Features
+
+- User authentication with role-based access (Admin/User)  
+- Real-time court availability and scheduling  
+- Booking and cancellation functionality  
+- Admin dashboard for court and booking management  
+- Designed for cloud deployment (high scalability)  
+- (Optional) Email notifications for booking updates  
+
+---
+
+## 📂 Project Structure
+
+```
+CC_PROJECT/
+├── static/             # Static files (CSS, JS)
+├── templates/          # HTML templates
+├── main.py             # Main Flask application
+├── requirements.txt    # Python dependencies
+└── README.md           # Project documentation
+```
+
+---
+
+## 🖥️ Getting Started
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Pradeep09102/CC_PROJECT.git
 cd CC_PROJECT
 ```
 
-2. **Create a Virtual Environment**
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. **Install Dependencies**
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. **Run the Application**
+### 4. Run the App
 
 ```bash
 python main.py
 ```
 
-Visit `http://localhost:5000` in your web browser to access the application.
+Visit `http://localhost:5000` in your browser.
 
-## Project Structure
+---
 
-```
-CC_PROJECT/
-├── static/              # Static assets (CSS, JS)
-├── templates/           # HTML templates
-├── main.py              # Main Flask application
-├── requirements.txt     # Project dependencies
-└── README.md            # Project documentation
-```
+## ✅ Future Improvements
 
-## Screenshots
+- Mobile-responsive UI  
+- Integrated calendar-based booking view  
+- Payment gateway integration (e.g., Stripe, Razorpay)  
+- Notifications via Email/SMS  
+- Analytics for court usage trends  
 
-*Add screenshots of the UI and dashboard here if available.*
+---
 
-## Future Enhancements
+## 🤝 Contributing
 
-- Mobile-responsive layout  
-- Integrated calendar view for booking slots  
-- Payment gateway integration (e.g., Razorpay, Stripe)  
-- SMS/Email notifications for bookings  
-- Role-based access and user analytics
+We welcome contributions!
 
-## Contributing
-
-Contributions are welcome!  
 1. Fork the repository  
-2. Create a feature branch  
-3. Submit a pull request with a clear description
+2. Create a new feature branch  
+3. Commit your changes  
+4. Open a pull request
 
-## License
+---
+
+## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Contact
+---
+
+## 📬 Contact
 
 **Developer:** Pradeep Boda  
 📧 Email: [bodapradeep020@gmail.com](mailto:bodapradeep020@gmail.com)  
-🔗 GitHub: [https://github.com/Pradeep09102](https://github.com/Pradeep09102)
-
+🔗 GitHub: [Pradeep09102](https://github.com/Pradeep09102)
