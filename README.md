@@ -91,12 +91,6 @@ We welcome contributions!
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 ## 📬 Contact
 
 **Developer:** Pradeep Boda  
